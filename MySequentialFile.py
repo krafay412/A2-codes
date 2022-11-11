@@ -34,12 +34,12 @@ def AddinSequentialFile(StdId,StdName,StdClass):
     os.rename("StudentsSeqfileTemp.txt", "StudentsSeqfile.txt")
 
 def AddMenu():
-    StdId = int(input("Enter ID: "))
+    StdId = int(input("Enter ID\n-1 To Exit: "))
     while StdId != -1:
         StdName = input("Enter Name: ")
         StdClass = input("Enter Class: ")
         AddinSequentialFile(StdId,StdName,StdClass)
-        StdId = int(input("Enter ID: "))
+        StdId = int(input("Enter ID\n-1 To Exit: "))
 
 def DeleteinSequentialFile():
     sf = open("StudentsSeqfile.txt","rt")
