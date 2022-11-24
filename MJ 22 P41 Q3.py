@@ -40,7 +40,7 @@ for i in range(11):
     else:
         print("Data not Added\nQueue Full")
 
-for i in range(11):
+for i in range(2):
     Value = Dequeue()
     if not Value:
         print("Queue Empty")
