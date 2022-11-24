@@ -54,10 +54,11 @@ def NewHighScoreList(PlayerName,PlayerScore):
                 NoSwap = False
         Boundary -= 1
     PlayerArrayNew = PlayerArray.copy()
+    del PlayerArrayNew[-1]
 
 def PrintAllNew():
     print("New List ")
-    for i in range(11):
+    for i in range(10):
         print(PlayerArrayNew[i].Name,PlayerArrayNew[i].Score)
 
 ReadHighScores()
