@@ -77,7 +77,6 @@ def WriteTopTen():
     sf.close()
 WriteTopTen()
 
-#Q2
 
 
 
