@@ -1,0 +1,123 @@
+global StackData
+global StackPointer
+StackData = [0 for i in range(10)] #OF INTEGER
+StackPointer = 0 #INTEGER
+def PrintAll():
+    print("StackPointer:",StackPointer)
+    for i in range(10):
+        print(StackData[i])
+def Push(val):
+    global StackData,StackPointer
+    if StackPointer == 10:
+        return False
+    StackData[StackPointer] = val
+    StackPointer +=1
+    return True
+for i in range(11):
+    Val = int(input("Enter Value to be pushed: "))
+    Sucess = Push(Val)
+    if Sucess:
+        print("Data added Sucessfully")
+    else:
+        print("Stack is full")
+PrintAll()
+
+def Pop():
+    global StackPointer
+    if StackPointer == 0:
+        return -1
+    StackPointer -= 1
+    Val = StackData[StackPointer]
+    return Val
+Pop()
+Pop()
+PrintAll()
+
+#Q2
+
+import random
+ArrayData = [[random.randint(1,100) for i in range(10)]for j in range(10)]
+ArrayLength = 10
+def PrintAll():
+    for i in range(10):
+        for j in range(10):
+            print(ArrayData[i][j]," ",end ='')
+        print(" ")
+print("Before")
+PrintAll()
+for x in range(0,ArrayLength):
+    for y in range(0,ArrayLength -1):
+        for z in range(0,ArrayLength-y-1):
+            if ArrayData[x][z] > ArrayData[x][z+1]:
+                TempValue = ArrayData[x][z]
+                ArrayData[x][z] = ArrayData[x][z+1]
+                ArrayData[x][z+1] = TempValue
+print("Sorted")
+PrintAll()
+
+def BinarySearch(SearchArray,Lower,Upper,SearchValue):
+    if Upper >= Lower:
+        Mid = int((Lower + (Upper - 1)) / 2)
+        if SearchArray[0][Mid] == SearchValue:
+            return Mid
+        else:
+            if SearchArray[0][Mid] > SearchValue:
+                return BinarySearch(SearchArray,Lower,Mid - 1,SearchValue)
+            else:
+                return BinarySearch(SearchArray,Mid + 1,Lower,SearchValue)
+    return -1
+print(BinarySearch(ArrayData,0,10,ArrayData[0][4]))
+print(BinarySearch(ArrayData,0,10,101))
+
+#Q3
+class Card:
+    #PRIVATE Number:INTEGER
+    #PRIVATE Colour:STRING
+    def __init__(self,num,col):
+        self.__Number = num
+        self.__Colour = col
+    def GetNumber(self):
+        return self.__Number
+    def GetColour(self):
+        return self.__Colour
+
+CardArray = [0 for i in range(30)]
+try:
+    card = open("CardValues.txt","rt")
+    i = 0
+    FileNum = (card.readline().strip())
+    while FileNum !="":
+        FileNum = int(FileNum)
+        FileColour = card.readline().strip()
+        CardArray[i] = Card(FileNum,FileColour)
+        i += 1
+        FileNum = (card.readline().strip())
+    card.close()
+except IOError:
+    print("File not Found")
+SelectedCard = []
+def ChooseCard():
+    global SelectedCard
+    while True:
+        option = int(input("Enter Card 1-30: "))
+        if option < 1 or option > 30:
+            print("Out of Range")
+        elif (option-1) in SelectedCard:
+            print(f'{option} Card Have Already been Selected')
+        else:
+            print("Added")
+            break
+    SelectedCard.append(option-1)
+    return option-1
+Player1 = [0,0,0,0]
+
+for i in range(4):
+    print(f'Choose {4-i} Card')
+    CardIndex = ChooseCard()
+    CardNum = CardArray[CardIndex].GetNumber()
+    CardColor = CardArray[CardIndex].GetColour()
+    Player1[i] = Card(CardNum,CardColor)
+for i in range(4):
+    CardNum = Player1[i].GetNumber()
+    CardColour = Player1[i].GetColour()
+    print(CardNum,CardColour)
