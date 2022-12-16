@@ -1,0 +1,21 @@
+import turtle
+import random
+import math
+
+Screen = turtle.getscreen()
+Screen.bgcolor("yellow")
+
+Bob = turtle.Turtle()
+Colors = ["red","green","cyan","blue","purple","orange","black"]
+Bob.speed(10)
+for i in range(1,50):
+        Bob.begin_fill()
+        for k in range(1,10):
+            Bob.color(Colors[random.randint(0,6)],Colors[random.randint(0,6)])
+            Bob.forward(200)
+            Bob.right(142)
+        Bob.end_fill()
+    
+    
+    
+turtle.mainloop()
